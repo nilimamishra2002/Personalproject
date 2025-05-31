@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>navbar</title>
+  <link rel="stylesheet" href="/style.css">
+<style>
+    
+/*navigation bar*/
+#navbar{
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 0px;
+}
+#navbar::before{
+    content: "";
+    background-color:rgb(195, 183, 183);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+    opacity: 0.5;
+}
+/*navigation bar:logo and image*/
+#logo{
+     margin:12px 34px;
+}
+#logo img{
+    height: 30px;
+    margin: 5px 7px;
+}
+/*navigation bar:list styling*/
+#navbar ul{
+    display: flex;
+}
+#navbar ul li{
+    list-style: none;
+    font-size: 1rem;
+}
+#navbar ul li a{
+    color: black;
+    display: block;
+    padding: 3px 15px;
+    border-radius: 20px; 
+    text-decoration: none;
+}
+#navbar ul li a:hover{
+    color: black;
+    background-color: darkorange;
+    transform: scale(1.1);
+}
+
+#navbar .nav-auth {
+    display: flex;
+    margin-left: auto; /* push to right */
+   
+}
+
+
+.nav-auth  a {
+    margin: 0 10px;
+    color: black;
+    text-decoration: none;
+    padding: 3px 15px;
+    border-radius: 20px;
+    /* background-color:rgb(195, 183, 183); */
+    margin-left: auto;
+    text-decoration: none;
+
+}
+
+.nav-auth  a:hover {
+    background-color: darkorange;
+    /* color: white; */
+    transform: scale(1.1);
+}
+
+</style>
+
+</head>
+<body>
+
+<nav id="navbar">
+  <div id="logo">
+    <img src="/images/logo.png" alt="Mypersonalmeal.com">
+  </div>
+
+  <ul>
+    <li class="item"><a href="/">HOME</a></li>
+    <li class="item"><a href="#leftabout">ABOUT US</a></li>
+    <li class="item"><a href="/order">SERVICES</a></li>
+    <li class="item"><a href="/contact">CONTACT US</a></li>
+  </ul>
+
+  <ul class="nav-auth">
+    <% if (user) { %>
+    Hello, <%= user.username  %> 
+    <a href="/logout">Logout</a>
+  <% } else { %>
+    <a href="/login">Login</a> 
+    <a href="/register">Register</a>
+  <% } %>>
+  </ul>
+</nav>
+
+</body>
+</html>
+
+<!-- <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const loginBtn = document.getElementById('loginBtn');
+    const registerBtn = document.getElementById('registerBtn');
+
+    if (loginBtn) {
+      loginBtn.addEventListener('click', () => {
+        window.dispatchEvent(new CustomEvent('openLoginModal'));
+      });
+    }
+
+    if (registerBtn) {
+      registerBtn.addEventListener('click', () => {
+        window.dispatchEvent(new CustomEvent('openRegisterModal'));
+      });
+    }
+  });
+</script> -->

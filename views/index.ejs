@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food At Your Doorstep | @Mypersonalmeal.com</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <%- include('partials/navbar') %>
+    <!-- <nav id="navbar">
+        <div id="logo">
+            <img src="" alt="Mypersonalmeal.com">
+        </div>
+        <ul>
+            <li class="item"><a href="#home">HOME</a></li>
+            <li class="item"><a href="#leftabout">ABOUT US</a></li>
+            <li class="item"><a href="#services">SERVICES</a></li>
+            <li class="item"><a href="contact.html">CONTACT US</a></li>
+        </ul>
+    </nav> -->
+
+    <section id="home">
+        <h1 class="h-primary">Welcome to @Mypersonalmeal</h1>
+        <p>!....NO WORRIES....!</p>
+        <p>When Food Service Is AT Your Doorstep</p>
+        <button class="butn"><a href="/order">Order Now</a></button>
+    </section>
+
+    <section class="left" id="leftabout">
+        <div class="box">
+            <div class="about">About Us</div>
+            <h2>Mypersonalmeal, Odisha is a web-based initiative to provide food at everyone's doorstep.</h2>
+            <p>Convenience: We make it easy to order and receive food, no matter where you are.</p>
+            <p>Variety: We partner with thousands of restaurants to offer you a wide variety of cuisines to choose from.</p>
+            <p>Affordability: We offer competitive prices on all of our food deliveries.</p>
+            <p>Reliability: We're committed to delivering your food on time and in perfect condition.</p>
+            <p>Customer service: We have a dedicated team of customer support representatives who are always happy to help.</p>
+        </div>
+    </section>
+
+    <!-- <section class="services-container">
+        <h1 class="h-primary center">Order Here</h1>
+        <div id="services">
+            <div class="box">
+                <img src="/images/continental.jpg" alt="">
+                <h2 class="h-secondary center">Italian</h2>
+                <p class="center">Traditional Italian Cuisine Spaghetti made with long, thin pasta, enriched with bursting flavours of spices, toppings, and fresh ingredients. MADE WITH LOVE :)</p>
+                <h1>Rs.250</h1>
+            </div>
+            <div class="box">
+                <img src="/images/continental1.jpg" alt="">
+                <h2 class="h-secondary center">Thai</h2>
+                <p class="center">Traditional Thai Curry With Rice with bursting flavours of coconut and spices. Cooked in medium flame. Served with fresh toppings of vegetables. MADE WITH LOVE :)</p>
+                <h1>Rs.250</h1>
+            </div>
+            <div class="box">
+                <img src="/images/continental2.jpg" alt="">
+                <h2 class="h-secondary center">Meat</h2>
+                <p class="center">Juicy, warm, tender, flavourful meat. Cooked slightly longer than medium rare, showing a warm red centre and a flavourful caramelised exterior. MADE WITH LOVE :)</p>
+                <h1>Rs.250</h1>
+            </div>
+        </div>
+    </section> -->
+
+    <div class="btn-container">
+        <button class="btn"><a href="login.html">Order</a></button>
+    </div>
+
+    <section id="deliver-section">
+        <h1 class="h-primary center">Delivery</h1>
+        <div id="deliveries">
+            <div class="delivery-item">
+                <p>Fastest Delivery with Zero delivery charges AND 10% Off with <code>mypersonalmeal</code></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="center">
+            Copyright &copy; www.@Mypersonalmeal.com All rights reserved
+        </div>
+    </footer>
+
+    <script>
+        // Function to redirect to login page
+        function redirectToLogin() {
+            window.location.href = 'login.html';
+        }
+    </script>
+
+    <script src="/cart.js"></script>
+    <script>
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                const item = event.target.parentElement.parentElement.querySelector('.h-secondary').textContent;
+                const price = parseFloat(event.target.parentElement.parentElement.querySelector('h1').textContent.slice(3));
+                addToCart(item, price);
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
+</body>
+</html>

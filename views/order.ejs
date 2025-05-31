@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order | MyPersonalMeal</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body {
+      background-color: #fff3e0;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .orders-container {
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      width: 90%;
+      max-width: 1100px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 1rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 240px;
+      justify-content: space-between;
+    }
+
+    .card img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin: 0.5rem 0 0.3rem;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      margin: 0;
+      color: #444;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .quantity-controls button {
+      padding: 4px 10px;
+      font-size: 16px;
+      border: none;
+      background-color: #ff9800;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .quantity-controls span {
+      font-size: 1rem;
+    }
+
+    .cart-button {
+      position: fixed;
+      bottom: 40px;
+      right: 20px;
+      background-color: #ff9800;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <%- include('partials/navbar') %>
+
+  <div class="orders-container">
+    <form id="cartForm" action="/cart" method="POST">
+      <div class="menu-grid">
+
+        <% const dishes = [
+          { name: 'Idli Sambar', price: 40 },
+          { name: 'Bada', price: 30 },
+          { name: 'Upma', price: 35 },
+          { name: 'Aloo paratha', price: 45 },
+          { name: 'Chole bhature', price: 70 },
+          { name: 'Pakodi', price: 25 },
+          { name: 'Chenapoda', price: 60 },
+          { name: 'Rasagolla', price: 20 },
+          { name: 'Gulabjamun', price: 25 },
+          { name: 'Steam Rice', price: 50 },
+          { name: 'Dalma', price: 55 },
+          { name: 'Chiken Kasa', price: 90 },
+          { name: 'Khichdi', price: 65 },
+          { name: 'Mutton Curry', price: 150 },
+          { name: 'Paneer Butter Masala', price: 120 },
+          { name: 'Rice & Fish Curry', price: 100 },
+          { name: 'Vegetable Pulao', price: 80 },
+          { name: 'Roti Sabzi', price: 40 }
+        ]; %>
+
+        <% dishes.forEach(dish => { %>
+          <div class="card">
+            <img src="/images/<%= dish.name %>.jpeg" alt="<%= dish.name %>">
+            <h3><%= dish.name %></h3>
+            <p>₹ <%= dish.price %></p>
+            <div class="quantity-controls">
+              <button type="button" onclick="decrementQty('<%= dish.name %>')">-</button>
+              <span id="<%= dish.name %>-qty">0</span>
+              <button type="button" onclick="incrementQty('<%= dish.name %>')">+</button>
+            </div>
+            <input type="hidden" name="quantity_<%= dish.name.replace(/\s+/g, '_') %>" id="input-<%= dish.name %>" value="0">
+          </div>
+        <% }); %>
+
+      </div>
+    </form>
+  </div>
+
+  <button class="cart-button" onclick="document.getElementById('cartForm').submit()">Go to Cart</button>
+
+  <footer>
+    &copy; 2025 @Mypersonalmeal.com — All rights reserved.
+  </footer>
+
+  <script>
+    const quantities = {};
+
+    function incrementQty(dish) {
+      if (!quantities[dish]) quantities[dish] = 0;
+      quantities[dish]++;
+      document.getElementById(dish + '-qty').innerText = quantities[dish];
+      document.getElementById('input-' + dish).value = quantities[dish];
+    }
+
+    function decrementQty(dish) {
+      if (!quantities[dish]) quantities[dish] = 0;
+      if (quantities[dish] > 0) quantities[dish]--;
+      document.getElementById(dish + '-qty').innerText = quantities[dish];
+      document.getElementById('input-' + dish).value = quantities[dish];
+    }
+  </script>
+
+</body>
+</html>
