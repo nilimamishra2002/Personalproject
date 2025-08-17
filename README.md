@@ -3,6 +3,9 @@
 A personalized meal ordering platform built with **Node.js, Express, and EJS**, featuring **Razorpay test payment gateway integration** for a smooth checkout experience.  
 
 ---
+## 🌐 Live Demo
+You can explore the deployed app here:  
+👉 [MyPersonalMeal Live on Render](https://atmypersonalmeal-sc64.onrender.com/)
 
 ## 🚀 Features
 - User-friendly meal ordering system with dynamic menus.
