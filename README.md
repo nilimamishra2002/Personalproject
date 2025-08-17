@@ -17,7 +17,7 @@ You can explore the deployed app here:
 ---
 
 ## 🛠️ Tech Stack
-- **Frontend:** EJS, CSS, Bootstrap
+- **Frontend:** EJS, CSS
 - **Backend:** Node.js, Express.js
 - **Payments:** Razorpay (test mode)
 - **Database (optional/future):** MongoDB
